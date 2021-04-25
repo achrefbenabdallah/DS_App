@@ -109,7 +109,7 @@
         android:ems="10"
         android:fontFamily="@font/aclonica"
         android:hint="phone"
-        android:inputType="phone"
+        android:inputType="textPhonetic"
         android:padding="10dp"
         android:textColor="#F8F7F7"
         android:textColorHint="#FFFFFF"
