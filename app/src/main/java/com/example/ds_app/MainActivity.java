@@ -2,7 +2,10 @@ package com.example.ds_app;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.fragment.app.Fragment;
 
+import android.app.FragmentManager;
+import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
@@ -16,6 +19,7 @@ import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
 
 public class MainActivity extends AppCompatActivity {
+    Fragment f;
     TextView fullName,email,phone;
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
@@ -52,4 +56,18 @@ public class MainActivity extends AppCompatActivity {
         startActivity(new Intent(getApplicationContext(),login.class));
         finish();
     }
+
+   /* public void btn1(View view) {
+        f=new Fragment2();
+        FragmentManager fm=getFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        ft.replace(R.id.fragment,f);
+    }
+
+    public void btn2(View view) {
+        f=new Fragment1();
+        FragmentManager fm=getFragmentManager();
+        FragmentTransaction ft=fm.beginTransaction();
+        ft.replace(R.id.fragment)
+    }*/
 }
