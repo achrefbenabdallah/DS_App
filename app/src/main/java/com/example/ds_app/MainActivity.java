@@ -40,10 +40,10 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public void onEvent(@Nullable DocumentSnapshot value, @Nullable FirebaseFirestoreException error) {
                 phone.setText(value.getString("Phone"));
-                fullName.setText(value.getString("Fullname"));
+                fullName.setText(value.getString("FullName"));
                 email.setText(value.getString("Email"));
             }
-        })
+        });
 
     }
 
