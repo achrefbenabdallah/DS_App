@@ -1,8 +1,10 @@
 package com.example.ds_app;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.text.TextUtils;
@@ -14,6 +16,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
@@ -22,7 +26,7 @@ public class login extends AppCompatActivity {
 
     EditText mEmail,mPassword;
     Button mLoginBtn;
-    TextView mCreateBtn;
+    TextView mCreateBtn , forgotPwd;
     FirebaseAuth fAuth;
     ProgressBar progressBar;
 
@@ -34,11 +38,10 @@ public class login extends AppCompatActivity {
 
         mEmail=findViewById(R.id.email);
         mPassword=findViewById(R.id.password);
-        progressBar=findViewById(R.id.progressBar);
         mLoginBtn=findViewById(R.id.loginbtn);
         mCreateBtn=findViewById(R.id.createtext);
-
         fAuth=FirebaseAuth.getInstance();
+        forgotPwd=findViewById(R.id.forgotPwd);
 
         mLoginBtn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -71,7 +74,6 @@ public class login extends AppCompatActivity {
                             startActivity(new Intent(getApplicationContext(),MainActivity.class));
                         }else {
                             Toast.makeText(login.this, "Error !"+task.getException().getMessage(), Toast.LENGTH_SHORT).show();
-                            progressBar.setVisibility(View.GONE);
                         }
                     }
                 });
@@ -82,6 +84,45 @@ public class login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 startActivity(new Intent(getApplicationContext(),register.class));
+            }
+        });
+
+        forgotPwd.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EditText resetMail=new EditText(view.getContext());
+                final AlertDialog.Builder passwordResetDialog=new AlertDialog.Builder(view.getContext());
+                passwordResetDialog.setMessage("Enter your Email To Receive Reset Link !");
+                passwordResetDialog.setTitle("Reset Password ?");
+                passwordResetDialog.setView(resetMail);
+
+                passwordResetDialog.setPositiveButton("yes", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                        //extract email from editText field
+                        String mail=resetMail.getText().toString();
+                        fAuth.sendPasswordResetEmail(mail).addOnSuccessListener(new OnSuccessListener<Void>() {
+                            @Override
+                            public void onSuccess(Void aVoid) {
+                                Toast.makeText(login.this, "Reset Link Sent To your Email ", Toast.LENGTH_SHORT).show();
+                            }
+                        }).addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Toast.makeText(login.this, "Error !"+e.getMessage(), Toast.LENGTH_SHORT).show();
+                            }
+                        });
+                    }
+                });
+
+                passwordResetDialog.setNegativeButton("No", new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+                passwordResetDialog.create().show();
             }
         });
     }
