@@ -23,7 +23,7 @@
         app:layout_constraintVertical_bias="0.126" />
 
     <Button
-        android:id="@+id/button"
+        android:id="@+id/logoutBtn"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -91,40 +91,16 @@
         tools:srcCompat="@android:mipmap/sym_def_app_icon" />
 
     <Button
-        android:id="@+id/btn1"
-        android:layout_width="132dp"
-        android:layout_height="50dp"
-        android:onClick="btn1"
-        android:text="Fragment1"
+        android:id="@+id/fragmentsBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Go To Fragments"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.096"
+        app:layout_constraintHorizontal_bias="0.538"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.572" />
+        app:layout_constraintVertical_bias="0.771" />
 
-    <Button
-        android:id="@+id/btn2"
-        android:layout_width="132dp"
-        android:layout_height="48dp"
-        android:onClick="btn2"
-        android:text="Fragment2"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.903"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.571" />
-
-    <fragment
-        android:id="@+id/fragment"
-        android:name="com.example.ds_app.Fragment1"
-        android:layout_width="413dp"
-        android:layout_height="167dp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.78" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

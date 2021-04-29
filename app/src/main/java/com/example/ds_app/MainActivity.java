@@ -9,6 +9,7 @@ import android.app.FragmentTransaction;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
 
 import com.google.firebase.auth.FirebaseAuth;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity {
     FirebaseFirestore fStore;
     FirebaseAuth fAuth;
     String userId;
+    Button fragmentsBtn,logoutBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -33,6 +35,8 @@ public class MainActivity extends AppCompatActivity {
         fullName=findViewById(R.id.profileName);
         email=findViewById(R.id.profileEmail);
         phone=findViewById(R.id.profilePhone);
+        fragmentsBtn=findViewById(R.id.fragmentsBtn);
+        logoutBtn=findViewById(R.id.logoutBtn);
 
         fAuth=FirebaseAuth.getInstance();
         fStore=FirebaseFirestore.getInstance();
@@ -49,6 +53,20 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
+        fragmentsBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(getApplicationContext(),Fragments.class));
+            }
+        });
+
+        logoutBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                logout(view);
+            }
+        });
+
     }
 
     public void logout(View view) {
@@ -57,17 +75,4 @@ public class MainActivity extends AppCompatActivity {
         finish();
     }
 
-   /* public void btn1(View view) {
-        f=new Fragment2();
-        FragmentManager fm=getFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-        ft.replace(R.id.fragment,f);
-    }
-
-    public void btn2(View view) {
-        f=new Fragment1();
-        FragmentManager fm=getFragmentManager();
-        FragmentTransaction ft=fm.beginTransaction();
-        ft.replace(R.id.fragment)
-    }*/
 }
